@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Store} from "@ngrx/store";
-import {RegisterAction} from "../../store/actions/auth.actions";
-import {registerRequestInterface} from "../../models/registerRequest.interface";
+import {RegisterRequestInterface} from "../../models/registerRequest.interface";
+import {AuthFacadeService} from "../../services/auth-facade.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-register',
@@ -11,25 +11,33 @@ import {registerRequestInterface} from "../../models/registerRequest.interface";
 })
 export class SignUpComponent implements OnInit {
   public form!: FormGroup;
+  public isSubmitting$: Observable<boolean> = this.authFacade.isSubmitting$;
 
-  constructor(private formBuilder: FormBuilder, private store: Store) { }
+  constructor(private formBuilder: FormBuilder, private authFacade: AuthFacadeService) {
+  }
 
   ngOnInit(): void {
     this.initializeForm();
+    this.initializeValues();
+  }
+
+  public onSignUp(): void {
+    console.log(this.form.valid);
+    const request: RegisterRequestInterface = {
+      user: this.form.value
+    }
+    this.authFacade.register(request);
   }
 
   private initializeForm(): void {
     this.form = this.formBuilder.group({
-      userName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
+      username: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)])
     })
   }
 
-  public onSignUp(): void {
-    console.log(this.form.valid);
-    const user = this.form.value as registerRequestInterface;
-    this.store.dispatch(RegisterAction(RegisterAction(user)))
+  private initializeValues(): void {
   }
 
 }

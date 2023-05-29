@@ -16,7 +16,7 @@
                 type="text"
                 class="form-control form-control-lg"
                 placeholder="Username"
-                formControlName="userName"
+                formControlName="username"
               >
             </fieldset>
             <fieldset class="form-group">
@@ -36,7 +36,12 @@
               >
             </fieldset>
 
-            <button class="btn btn-lg btn-primary pull-xs-right" type="submit" (click)="onSignUp()">Sign Up</button>
+            <button
+              class="btn btn-lg btn-primary pull-xs-right"
+              type="submit"
+              (click)="onSignUp()"
+              [disabled]="isSubmitting$ | async"
+            >Sign Up</button>
           </fieldset>
         </form>
       </div>
