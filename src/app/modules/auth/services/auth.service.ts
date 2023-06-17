@@ -19,4 +19,8 @@ export class AuthService {
       .post<AuthResponseInterface>(url, data)
       .pipe(map((response: AuthResponseInterface) => response.user))
   }
+
+  public setToken(token: string): void {
+    localStorage.setItem('accessToken', token);
+  }
 }

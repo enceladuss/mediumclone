@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {RegisterRequestInterface} from "../../models/registerRequest.interface";
 import {AuthFacadeService} from "../../services/auth-facade.service";
 import {Observable} from "rxjs";
+import {BackendErrorsInterface} from "../../../../shared/models/backendErrors.interface";
 
 @Component({
   selector: 'app-register',
@@ -12,6 +13,7 @@ import {Observable} from "rxjs";
 export class SignUpComponent implements OnInit {
   public form!: FormGroup;
   public isSubmitting$: Observable<boolean> = this.authFacade.isSubmitting$;
+  public validationsErrors$: Observable<BackendErrorsInterface | null> = this.authFacade.validationsErrors$;
 
   constructor(private formBuilder: FormBuilder, private authFacade: AuthFacadeService) {
   }
@@ -22,7 +24,6 @@ export class SignUpComponent implements OnInit {
   }
 
   public onSignUp(): void {
-    console.log(this.form.valid);
     const request: RegisterRequestInterface = {
       user: this.form.value
     }

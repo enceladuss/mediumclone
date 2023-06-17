@@ -1,8 +1,7 @@
 import {createAction, props} from "@ngrx/store";
 import {RegisterRequestInterface} from "../../models/registerRequest.interface";
-import {IAuthInfo} from "../../models/auth.interface";
-import {HttpErrorResponse} from "@angular/common/http";
 import {CurrentUserInterface} from "../../../../shared/models/currentUser.interface";
+import {BackendErrorsInterface} from "../../../../shared/models/backendErrors.interface";
 
 export const RegisterAction = createAction(
   '[Register] Register',
@@ -16,5 +15,5 @@ export const RegisterSuccessAction = createAction(
 
 export const RegisterErrorAction = createAction(
   '[Register] Register Error',
-  props<{ error: HttpErrorResponse }>()
+  props<{ errors: BackendErrorsInterface }>()
 );
