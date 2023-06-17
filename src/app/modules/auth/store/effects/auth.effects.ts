@@ -10,12 +10,6 @@ import {Router} from "@angular/router";
 @Injectable()
 export class AuthEffects {
 
-  constructor(
-    private actions$: Actions,
-    private authService: AuthService,
-    private router: Router
-  ) {}
-
   register$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.RegisterAction),
@@ -32,4 +26,27 @@ export class AuthEffects {
         )
       )
     ))
+  login$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.LoginAction),
+      switchMap(({request}) =>
+        this.authService.login(request).pipe(
+          map((currentUser: CurrentUserInterface) => {
+            this.authService.setToken(currentUser.token);
+            this.router.navigate(['']);
+            return AuthActions.LoginSuccessAction({currentUser})
+          }),
+          catchError((errorResponse: HttpErrorResponse) => {
+            return of(AuthActions.LoginErrorAction({errors: errorResponse.error.errors}))
+          })
+        )
+      )
+    ))
+
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private router: Router
+  ) {
+  }
 }

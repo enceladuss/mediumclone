@@ -6,6 +6,7 @@ import {Observable} from "rxjs";
 import * as actions from "../store/actions/auth.actions";
 import {RegisterRequestInterface} from "../models/registerRequest.interface";
 import {BackendErrorsInterface} from "../../../shared/models/backendErrors.interface";
+import {LoginRequestInterface} from "../models/loginRequest.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,8 @@ export class AuthFacadeService {
     this.store.dispatch(actions.RegisterAction({request}));
   }
 
+  public login(request: LoginRequestInterface): void {
+    this.store.dispatch(actions.LoginAction({request}));
+  }
 
 }

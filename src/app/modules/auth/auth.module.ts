@@ -10,9 +10,10 @@ import { reducers } from './store/reducers/auth.reducers';
 import { AuthEffects } from './store/effects/auth.effects';
 import { AuthService } from './services/auth.service';
 import { BackendErrorMessagesComponent } from '../../shared/components/backend-error-messages/backend-error-messages.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-  declarations: [SignUpComponent],
+  declarations: [SignUpComponent, LoginComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

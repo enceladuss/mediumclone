@@ -32,6 +32,27 @@ const authReducer = createReducer(
       validationErrors: action.errors
     })
   ),
+  on(AuthActions.LoginAction, (state): AuthStateInterface => (
+    {
+      ...state,
+      isSubmitting: true,
+      validationErrors: null
+    })
+  ),
+  on(AuthActions.LoginSuccessAction, (state, action): AuthStateInterface => (
+    {
+      ...state,
+      isSubmitting: false,
+      isLoggedIn: true,
+      currentUser: action.currentUser
+    })
+  ),
+  on(AuthActions.LoginErrorAction, (state, action): AuthStateInterface => ({
+      ...state,
+      isSubmitting: false,
+      validationErrors: action.errors
+    })
+  ),
 )
 
 export function reducers(state: AuthStateInterface, action: Action) {
