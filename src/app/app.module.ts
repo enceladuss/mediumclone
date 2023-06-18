@@ -9,15 +9,17 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {environment} from "../environments/environment";
 import {EffectsModule} from "@ngrx/effects";
 import {HttpClientModule} from "@angular/common/http";
+import {TopBarComponent} from "./shared/components/top-bar/top-bar.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
+    TopBarComponent,
     HttpClientModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),

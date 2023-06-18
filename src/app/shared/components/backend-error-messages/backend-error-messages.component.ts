@@ -20,7 +20,7 @@ export class BackendErrorMessagesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.errorMessages = Object.keys(this.backendErrors as object || {}).map((name: string) => {
+    this.errorMessages = Object.keys(this.backendErrors as BackendErrorsInterface || {}).map((name: string) => {
       const messages = (this.backendErrors ? this.backendErrors[name] : []).join(', ');
 
       return `${name} ${messages}`;
