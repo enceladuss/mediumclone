@@ -16,7 +16,7 @@ export class AuthEffects {
       switchMap(({request}) =>
         this.authService.register(request).pipe(
           map((currentUser: CurrentUserInterface) => {
-            this.authService.setUserAccessToken(currentUser.token);
+            this.authService.setAccessToken(currentUser.token);
             this.router.navigate(['']);
             return AuthActions.RegisterSuccessAction({currentUser})
           }),
@@ -33,7 +33,7 @@ export class AuthEffects {
       switchMap(({request}) =>
         this.authService.login(request).pipe(
           map((currentUser: CurrentUserInterface) => {
-            this.authService.setUserAccessToken(currentUser.token);
+            this.authService.setAccessToken(currentUser.token);
             this.router.navigate(['']);
             return AuthActions.LoginSuccessAction({currentUser})
           }),
@@ -48,7 +48,7 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(AuthActions.GetCurrentUserAction),
       switchMap(() => {
-          const token = this.authService.getUserAccessToken();
+          const token = this.authService.accessToken;
           if (!token) {
             return of(AuthActions.GetCurrentUserErrorAction())
           }

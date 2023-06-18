@@ -29,17 +29,17 @@ export class AuthService {
       .pipe(map(this.getUser))
   }
 
-  public setUserAccessToken(token: string): void {
-    localStorage.setItem('accessToken', token);
-  }
-
-  public getUserAccessToken(): string {
-    return localStorage.getItem('accessToken') || '';
-  }
-
   public getCurrentUser(): Observable<CurrentUserInterface> {
     const url = environment.apiUrl + '/user'
     return this.http.get<AuthResponseInterface>(url).pipe(map(this.getUser))
+  }
+
+  public setAccessToken(token: string): void {
+    localStorage.setItem('accessToken', token);
+  }
+
+  public get accessToken(): string | null {
+    return localStorage.getItem('accessToken');
   }
 
   private getUser(response: AuthResponseInterface): CurrentUserInterface {

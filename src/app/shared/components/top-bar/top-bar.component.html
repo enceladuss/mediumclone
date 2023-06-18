@@ -36,7 +36,7 @@
 
       </ng-container>
 
-      <ng-container *ngIf="!(isLoggedIn$ | async)">
+      <ng-container *ngIf="(isLoggedIn$ | async) === false">
 
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/sign-in']">
