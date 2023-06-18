@@ -33,3 +33,16 @@ export const LoginErrorAction = createAction(
   '[Auth] Login Error',
   props<{ errors: BackendErrorsInterface }>()
 );
+
+export const GetCurrentUserAction = createAction(
+  '[Auth] GetCurrentUser'
+);
+
+export const GetCurrentUserSuccessAction = createAction(
+  '[Auth] GetCurrentUser Success',
+  props<{ currentUser: CurrentUserInterface }>()
+);
+
+export const GetCurrentUserErrorAction = createAction(
+  '[Auth] GetCurrentUser Error'
+);

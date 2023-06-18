@@ -1,4 +1,4 @@
-import {createFeatureSelector, createSelector} from "@ngrx/store";
+import {createSelector} from "@ngrx/store";
 import {AppStateInterface} from "../../../../shared/models/appState.interface";
 import {AuthStateInterface} from "../../models/authState.interface";
 

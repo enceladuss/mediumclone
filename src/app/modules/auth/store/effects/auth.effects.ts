@@ -16,7 +16,7 @@ export class AuthEffects {
       switchMap(({request}) =>
         this.authService.register(request).pipe(
           map((currentUser: CurrentUserInterface) => {
-            this.authService.setToken(currentUser.token);
+            this.authService.setUserAccessToken(currentUser.token);
             this.router.navigate(['']);
             return AuthActions.RegisterSuccessAction({currentUser})
           }),
@@ -26,13 +26,14 @@ export class AuthEffects {
         )
       )
     ))
+
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.LoginAction),
       switchMap(({request}) =>
         this.authService.login(request).pipe(
           map((currentUser: CurrentUserInterface) => {
-            this.authService.setToken(currentUser.token);
+            this.authService.setUserAccessToken(currentUser.token);
             this.router.navigate(['']);
             return AuthActions.LoginSuccessAction({currentUser})
           }),
@@ -40,6 +41,26 @@ export class AuthEffects {
             return of(AuthActions.LoginErrorAction({errors: errorResponse.error.errors}))
           })
         )
+      )
+    ))
+
+  getCurrentUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.GetCurrentUserAction),
+      switchMap(() => {
+          const token = this.authService.getUserAccessToken();
+          if (!token) {
+            return of(AuthActions.GetCurrentUserErrorAction())
+          }
+          return this.authService.getCurrentUser().pipe(
+            map((currentUser: CurrentUserInterface) => {
+              return AuthActions.GetCurrentUserSuccessAction({currentUser})
+            }),
+            catchError((errorResponse: HttpErrorResponse) => {
+              return of(AuthActions.GetCurrentUserErrorAction())
+            })
+          )
+        }
       )
     ))
 

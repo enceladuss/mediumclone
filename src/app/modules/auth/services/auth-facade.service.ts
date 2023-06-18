@@ -34,4 +34,8 @@ export class AuthFacadeService {
     this.store.dispatch(actions.LoginAction({request}));
   }
 
+  public getCurrentUser(): void {
+    this.store.dispatch(actions.GetCurrentUserAction());
+  }
+
 }

@@ -4,6 +4,7 @@ import {AuthActions} from "../actions";
 
 const initialState: AuthStateInterface = {
   isSubmitting: false,
+  isLoading: false,
   currentUser: null,
   isLoggedIn: null,
   validationErrors: null
@@ -51,6 +52,27 @@ const authReducer = createReducer(
       ...state,
       isSubmitting: false,
       validationErrors: action.errors
+    })
+  ),
+  on(AuthActions.GetCurrentUserAction, (state): AuthStateInterface => ({
+      ...state,
+      isLoading: true
+    })
+  ),
+  on(AuthActions.GetCurrentUserSuccessAction, (state, action): AuthStateInterface => (
+    {
+      ...state,
+      isLoading: false,
+      isLoggedIn: true,
+      currentUser: action.currentUser
+    })
+  ),
+  on(AuthActions.GetCurrentUserErrorAction, (state): AuthStateInterface => (
+    {
+      ...state,
+      isLoading: false,
+      isLoggedIn: false,
+      currentUser: null
     })
   ),
 )
