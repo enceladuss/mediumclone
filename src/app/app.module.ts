@@ -11,6 +11,8 @@ import {EffectsModule} from "@ngrx/effects";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TopBarComponent} from "./shared/components/top-bar/top-bar.component";
 import {AuthInterceptor} from "./shared/interceptors/auth.interceptor";
+import {FeedModule} from "./modules/feed/feed.module";
+import {CoreModule} from "./core/core.module";
 
 @NgModule({
   declarations: [
@@ -19,9 +21,11 @@ import {AuthInterceptor} from "./shared/interceptors/auth.interceptor";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CoreModule,
     AuthModule,
     TopBarComponent,
     HttpClientModule,
+    FeedModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
