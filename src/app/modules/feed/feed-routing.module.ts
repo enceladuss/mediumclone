@@ -12,7 +12,10 @@ const routes: Routes = [
     path: 'your-feed',
     component: YourFeedComponent
   },
-
+  {
+    path: '**',
+    redirectTo: ''
+  },
 ];
 
 @NgModule({

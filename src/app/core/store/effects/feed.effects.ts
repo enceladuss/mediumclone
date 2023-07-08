@@ -1,6 +1,4 @@
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {AuthService} from "../../../modules/auth/services/auth.service";
-import {Router} from "@angular/router";
 import {FeedActions} from "../actions";
 import {catchError, map, of, switchMap} from "rxjs";
 import {FeedService} from "../../services/feed.service";
@@ -29,8 +27,6 @@ export class GetFeedEffects {
 
   constructor(
     private actions$: Actions,
-    private authService: AuthService,
-    private router: Router,
     private feedService: FeedService
   ) {
   }

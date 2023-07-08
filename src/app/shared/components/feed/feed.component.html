@@ -1,1 +1,41 @@
-<p>feed works!</p>
+<section class="feed">
+  <div *ngIf="isLoading$ | async">Loading...</div>
+  <div *ngIf="error$ | async">Error loading the feed. Please try again later.</div>
+
+  <div *ngIf="feedData$ | async" class="articles-wrap">
+    <article class="article-preview" *ngFor="let article of (feedData$ | async)?.articles">
+
+      <div class="article-meta">
+        <a [routerLink]="['/profiles', article.author.username]">
+          <img [src]="article.author.image">
+        </a>
+
+        <div class="info">
+          <a [routerLink]="['/profiles', article.author.username]">
+            {{article.author.username}}
+          </a>
+
+          <span class="date">{{article.createdAt}}</span>
+        </div>
+
+        <div class="pull-xs-right">
+          ADD TO FAVORITES
+        </div>
+      </div>
+
+      <a class="preview-link" [routerLink]="['/articles', article.slug]">
+        <h3>{{article.title}}</h3>
+        <p>{{article.description}}</p>
+        LIST OF TAGS
+      </a>
+
+    </article>
+
+    <app-pagination
+      [totalItems]="(feedData$ | async)?.articlesCount ?? 1"
+      [currentPage]="this.apiUrl"
+      [currentPageNumber]="currentPage"
+      [pageSize]="postsLimit"
+    ></app-pagination>
+  </div>
+</section>

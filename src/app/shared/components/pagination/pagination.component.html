@@ -1,0 +1,27 @@
+<ul>
+  <li>
+    <a
+      class="arrow-control"
+      [class.disabled]="isPreviousDisabled"
+      [routerLink]="currentPage"
+      [queryParams]="{page: prevPage}"
+    >
+      <i class="ion-chevron-left"></i>
+    </a>
+  </li>
+
+  <li *ngFor="let page of pages">
+    <a [routerLink]="currentPage" [queryParams]="{page: page}" [ngClass]="{'current-page': currentPageNumber === page}">{{page}}</a>
+  </li>
+  <li>
+    <a
+      class="arrow-control"
+      [class.disabled]="isNextDisabled"
+      [routerLink]="currentPage"
+      [queryParams]="{page: nextPage}"
+    >
+      <i class="ion-chevron-right"></i>
+    </a>
+  </li>
+</ul>
+

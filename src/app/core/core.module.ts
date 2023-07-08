@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {EffectsFeatureModule, EffectsModule} from "@ngrx/effects";
+import {EffectsModule} from "@ngrx/effects";
 import {StoreModule} from "@ngrx/store";
 import {reducers} from "./store/reducers/feed.reducers";
 import {FeedService} from "./services/feed.service";
+import {GetFeedEffects} from "./store/effects/feed.effects";
 
 
 
@@ -11,8 +12,8 @@ import {FeedService} from "./services/feed.service";
   declarations: [],
   imports: [
     CommonModule,
-    EffectsModule.forFeature([EffectsFeatureModule]),
-    StoreModule.forFeature('feed', reducers)
+    StoreModule.forFeature('feed', reducers),
+    EffectsModule.forFeature([GetFeedEffects])
   ],
   providers: [
     FeedService

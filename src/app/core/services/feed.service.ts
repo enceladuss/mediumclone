@@ -9,12 +9,12 @@ import {environment} from "../../../environments/environment";
 })
 export class FeedService {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
   public getFeed(url: string): Observable<GetFeedResponseInterface> {
     const fullUrl = environment.apiUrl + url;
 
-    return this.httpClient.get<GetFeedResponseInterface>(fullUrl);
+    return this.http.get<GetFeedResponseInterface>(fullUrl);
   }
 }
