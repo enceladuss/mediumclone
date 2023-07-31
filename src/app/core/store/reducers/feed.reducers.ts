@@ -13,7 +13,8 @@ const feedReducer = createReducer(
   on(FeedActions.GetFeedAction, (state): FeedStateInterface => (
     {
       ...state,
-      isLoading: true
+      isLoading: true,
+      data: null
     })
   ),
   on(FeedActions.GetFeedSuccessAction, (state, action): FeedStateInterface => (
@@ -32,6 +33,6 @@ const feedReducer = createReducer(
   ),
 )
 
-export function reducers(state: FeedStateInterface, action: Action) {
+export function feedReducers(state: FeedStateInterface, action: Action) {
   return feedReducer(state, action);
 }

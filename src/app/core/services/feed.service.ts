@@ -12,9 +12,10 @@ export class FeedService {
   constructor(private http: HttpClient) {
   }
 
-  public getFeed(url: string): Observable<GetFeedResponseInterface> {
+  public getFeed(url: string, page: number): Observable<GetFeedResponseInterface> {
     const fullUrl = environment.apiUrl + url;
+    const params = {offset: page};
 
-    return this.http.get<GetFeedResponseInterface>(fullUrl);
+    return this.http.get<GetFeedResponseInterface>(fullUrl, {params});
   }
 }

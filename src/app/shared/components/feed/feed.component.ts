@@ -8,13 +8,14 @@ import {ActivatedRoute, Params, Router, RouterModule} from "@angular/router";
 import {PostLimitConstant} from "../../../core/constants/postLimit.constant";
 import {takeUntil} from "rxjs/operators";
 import {PaginationComponent} from "../pagination/pagination.component";
+import {TagListComponent} from "../tag-list/tag-list.component";
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
   standalone: true,
-  imports: [CommonModule, RouterModule, PaginationComponent]
+  imports: [CommonModule, RouterModule, PaginationComponent, TagListComponent]
 })
 export class FeedComponent implements OnInit {
 
@@ -49,15 +50,20 @@ export class FeedComponent implements OnInit {
     this.baseUrl = this.router.url.split('?')[0];
   }
 
-  private fetchData(): void {
-    this.feedFacadeService.getFeedData(this.apiUrl);
+  private fetchData(page?: number): void {
+    const pages = page ? page : 0;
+    this.feedFacadeService.getFeedData(this.apiUrl, this.getOffsetNumber(pages));
   }
 
   private initializeListeners(): void {
     this.route.queryParams.subscribe((params: Params) => {
       this.currentPage = Number(params['page'] || 1);
-      console.log(this.currentPage);
+      this.fetchData(this.currentPage);
     }, takeUntil(this.destroy$))
+  }
+
+  private getOffsetNumber(page: number): number {
+    return page * this.postsLimit;
   }
 
   ngOnDestroy(): void {

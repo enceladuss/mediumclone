@@ -10,7 +10,7 @@
     </a>
   </li>
 
-  <li *ngFor="let page of pages">
+  <li *ngFor="let page of pages" class="page-number">
     <a [routerLink]="currentPage" [queryParams]="{page: page}" [ngClass]="{'current-page': currentPageNumber === page}">{{page}}</a>
   </li>
   <li>

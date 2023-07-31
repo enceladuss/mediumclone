@@ -28,6 +28,15 @@ ul {
   }
 }
 
+.page-number {
+  text-align: center;
+
+  a {
+    min-width: 20px;
+    display: inline-block;
+  }
+}
+
 .arrow-control {
 
 }

@@ -1,0 +1,15 @@
+<div *ngIf="tagsLoading$ | async">Loading...</div>
+
+<div class="sidebar" *ngIf="(tags$ | async)?.length">
+  <p>Popular tags</p>
+  <div class="tag-list">
+    <a
+      *ngFor="let tag of (tags$ | async);"
+      [routerLink]="['/tags', tag]"
+      class="tag-default tag-pill"
+    >
+      {{tag}}
+    </a>
+  </div>
+</div>
+

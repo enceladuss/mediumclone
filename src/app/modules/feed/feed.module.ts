@@ -6,6 +6,7 @@ import {FeedRoutingModule} from "./feed-routing.module";
 import {FeedComponent} from "../../shared/components/feed/feed.component";
 import {BannerComponent} from "../../shared/components/banner/banner.component";
 import {PaginationComponent} from "../../shared/components/pagination/pagination.component";
+import {PopularTagsComponent} from "../../shared/components/popular-tags/popular-tags.component";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {PaginationComponent} from "../../shared/components/pagination/pagination
     FeedRoutingModule,
     FeedComponent,
     BannerComponent,
-    PaginationComponent
+    PaginationComponent,
+    PopularTagsComponent
   ]
 })
 export class FeedModule {

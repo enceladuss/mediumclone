@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class GlobalFeedComponent implements OnInit {
 
   public apiUrl: string = '/articles';
+  public popularTagsApiUrl: string = '/tags';
 
   constructor() { }
 
