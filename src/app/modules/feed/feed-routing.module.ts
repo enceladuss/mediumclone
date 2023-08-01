@@ -2,15 +2,20 @@ import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {YourFeedComponent} from "./components/your-feed/your-feed.component";
 import {GlobalFeedComponent} from "./components/global-feed/global-feed.component";
+import {TagFeedComponent} from "./components/tag-feed/tag-feed.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: GlobalFeedComponent
+    component: GlobalFeedComponent,
   },
   {
-    path: 'your-feed',
+    path: 'feed',
     component: YourFeedComponent
+  },
+  {
+    path: 'tags/:slug',
+    component: TagFeedComponent
   },
   {
     path: '**',

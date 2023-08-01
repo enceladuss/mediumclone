@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {FeedFacadeService} from "../../../core/services/feed-facade.service";
 import {Observable, Subject} from "rxjs";
@@ -17,7 +17,7 @@ import {TagListComponent} from "../tag-list/tag-list.component";
   standalone: true,
   imports: [CommonModule, RouterModule, PaginationComponent, TagListComponent]
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input('apiUrl') apiUrl: string;
 
@@ -41,6 +41,13 @@ export class FeedComponent implements OnInit {
     this.initializeValues();
     this.fetchData();
     this.initializeListeners();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const isApiUrlChanged = !changes['apiUrl'].firstChange && changes['apiUrl'].previousValue !== changes['apiUrl'].currentValue;
+    if (isApiUrlChanged) {
+      this.fetchData();
+    }
   }
 
   private initializeValues(): void {

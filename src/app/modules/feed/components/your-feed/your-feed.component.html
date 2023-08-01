@@ -1,1 +1,15 @@
-<p>your-feed works!</p>
+<main class="home-page">
+  <app-banner></app-banner>
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-9">
+        <app-feed-toggler></app-feed-toggler>
+        <app-feed [apiUrl]="apiUrl"></app-feed>
+      </div>
+
+      <div class="col-md-3">
+        <app-popular-tags [apiUrl]="popularTagsApiUrl"></app-popular-tags>
+      </div>
+    </div>
+  </div>
+</main>

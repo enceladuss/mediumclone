@@ -7,12 +7,15 @@ import {FeedComponent} from "../../shared/components/feed/feed.component";
 import {BannerComponent} from "../../shared/components/banner/banner.component";
 import {PaginationComponent} from "../../shared/components/pagination/pagination.component";
 import {PopularTagsComponent} from "../../shared/components/popular-tags/popular-tags.component";
+import {FeedTogglerComponent} from "../../shared/components/feed-toggler/feed-toggler.component";
+import { TagFeedComponent } from './components/tag-feed/tag-feed.component';
 
 
 @NgModule({
   declarations: [
     YourFeedComponent,
-    GlobalFeedComponent
+    GlobalFeedComponent,
+    TagFeedComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +23,8 @@ import {PopularTagsComponent} from "../../shared/components/popular-tags/popular
     FeedComponent,
     BannerComponent,
     PaginationComponent,
-    PopularTagsComponent
+    PopularTagsComponent,
+    FeedTogglerComponent
   ]
 })
 export class FeedModule {
