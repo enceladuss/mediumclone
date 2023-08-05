@@ -1,12 +1,12 @@
 <nav class="navbar navbar-light">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/']">
+    <a class="navbar-brand" [routerLink]="['/home']">
       medium
     </a>
 
     <ul class="nav navbar-nav pull-xs-right">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/']">
+        <a class="nav-link" [routerLink]="['/home']">
           Home
         </a>
       </li>
@@ -39,13 +39,13 @@
       <ng-container *ngIf="(isLoggedIn$ | async) === false">
 
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/sign-in']">
+          <a class="nav-link" [routerLink]="['/auth/sign-in']">
             Sign In
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/sign-up']">
+          <a class="nav-link" [routerLink]="['/auth/sign-up']">
             Sign Up
           </a>
         </li>

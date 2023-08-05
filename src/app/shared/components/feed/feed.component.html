@@ -33,7 +33,7 @@
 
     <app-pagination
       [totalItems]="(feedData$ | async)?.articlesCount ?? 1"
-      [currentPage]="this.apiUrl"
+      [currentPage]="this.pageUrl ?? this.apiUrl"
       [currentPageNumber]="currentPage"
       [pageSize]="postsLimit"
     ></app-pagination>

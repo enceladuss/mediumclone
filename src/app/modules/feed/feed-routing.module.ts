@@ -7,6 +7,11 @@ import {TagFeedComponent} from "./components/tag-feed/tag-feed.component";
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
+    redirectTo: '/home'
+  },
+  {
+    path: 'home',
     component: GlobalFeedComponent,
   },
   {
@@ -16,10 +21,6 @@ const routes: Routes = [
   {
     path: 'tags/:slug',
     component: TagFeedComponent
-  },
-  {
-    path: '**',
-    redirectTo: ''
   },
 ];
 

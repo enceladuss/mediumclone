@@ -13,6 +13,7 @@ import {TopBarComponent} from "./shared/components/top-bar/top-bar.component";
 import {AuthInterceptor} from "./shared/interceptors/auth.interceptor";
 import {FeedModule} from "./modules/feed/feed.module";
 import {CoreModule} from "./core/core.module";
+import {ArticleModule} from "./modules/article/article.module";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {CoreModule} from "./core/core.module";
     TopBarComponent,
     HttpClientModule,
     FeedModule,
+    ArticleModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({

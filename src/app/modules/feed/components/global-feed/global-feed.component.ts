@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class GlobalFeedComponent  {
 
   public apiUrl: string = '/articles';
+  public pageUrl: string = '/home';
   public popularTagsApiUrl: string = '/tags';
 
   constructor() { }

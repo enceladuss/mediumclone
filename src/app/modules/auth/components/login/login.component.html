@@ -4,7 +4,7 @@
       <div class="col-md-6 offset-md-3 col-xs-12">
         <h1 class="text-xs-center">Log In</h1>
         <p class="text-xs-center">
-          <a [routerLink]="['/sign-up']">Doesnt have an account?</a>
+          <a [routerLink]="['/auth/sign-up']">Doesnt have an account?</a>
         </p>
         <app-backend-error-messages
           *ngIf="validationsErrors$ | async"

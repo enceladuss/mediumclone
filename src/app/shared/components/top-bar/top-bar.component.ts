@@ -6,10 +6,10 @@ import {AuthFacadeService} from "../../../modules/auth/services/auth-facade.serv
 import {CurrentUserInterface} from "../../models/currentUser.interface";
 
 @Component({
-  standalone: true,
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss'],
+  standalone: true,
   imports: [CommonModule, RouterModule]
 })
 export class TopBarComponent implements OnInit {

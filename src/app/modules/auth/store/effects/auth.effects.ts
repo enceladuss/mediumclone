@@ -17,7 +17,7 @@ export class AuthEffects {
         this.authService.register(request).pipe(
           map((currentUser: CurrentUserInterface) => {
             this.authService.setAccessToken(currentUser.token);
-            this.router.navigate(['']);
+            this.router.navigate(['/home']);
             return AuthActions.RegisterSuccessAction({currentUser})
           }),
           catchError((errorResponse: HttpErrorResponse) => {
@@ -34,7 +34,7 @@ export class AuthEffects {
         this.authService.login(request).pipe(
           map((currentUser: CurrentUserInterface) => {
             this.authService.setAccessToken(currentUser.token);
-            this.router.navigate(['']);
+            this.router.navigate(['/home']);
             return AuthActions.LoginSuccessAction({currentUser})
           }),
           catchError((errorResponse: HttpErrorResponse) => {

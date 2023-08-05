@@ -20,6 +20,7 @@ import {TagListComponent} from "../tag-list/tag-list.component";
 export class FeedComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input('apiUrl') apiUrl: string;
+  @Input('pageUrl') pageUrl: string | null;
 
   public feedData$: Observable<GetFeedResponseInterface | null>;
   public isLoading$: Observable<boolean>;
@@ -66,11 +67,11 @@ export class FeedComponent implements OnInit, OnDestroy, OnChanges {
     this.route.queryParams.subscribe((params: Params) => {
       this.currentPage = Number(params['page'] || 1);
       this.fetchData(this.currentPage);
-    }, takeUntil(this.destroy$))
+    }, takeUntil(this.destroy$));
   }
 
   private getOffsetNumber(page: number): number {
-    return page * this.postsLimit;
+    return Math.max(page * this.postsLimit - this.postsLimit, 0);
   }
 
   ngOnDestroy(): void {
