@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: ()=>import('./modules/article/article.module').then(module => module.ArticleModule)
   },
   {
+    path: 'manage-article',
+    loadChildren: ()=>import('./modules/manage-article/manage-article.module').then(module => module.ManageArticleModule)
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: '/home'

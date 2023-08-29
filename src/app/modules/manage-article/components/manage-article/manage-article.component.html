@@ -1,0 +1,18 @@
+<main class="editor-page">
+  <section class="container page">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-xs-12">
+        <h1>{{ this.slug ? 'Edit Article' : 'Create Article' }}</h1>
+        <ng-container *ngIf="!(isLoading$ | async) else loading">
+          <app-article-form [initialValues]="articleData$ | async" (articleSubmitEvent)="$event" [backendErrors]="error$ | async"></app-article-form>
+        </ng-container>
+
+        <ng-template #loading>
+          Loading...
+        </ng-template>
+
+      </div>
+    </div>
+  </section>
+</main>
+

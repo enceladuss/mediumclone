@@ -1,0 +1,48 @@
+<app-backend-error-messages *ngIf="backendErrors" [backendErrors]="backendErrors"></app-backend-error-messages>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <fieldset>
+
+    <fieldset class="form-group">
+      <input
+        formControlName="title"
+        type="text"
+        class="form-control form-control-lg"
+        placeholder="Article title"
+      >
+    </fieldset>
+
+    <fieldset class="form-group">
+      <input
+        formControlName="description"
+        type="text"
+        class="form-control form-control-lg"
+        placeholder="What is article about?"
+      >
+    </fieldset>
+
+    <fieldset class="form-group">
+              <textarea
+                formControlName="body"
+                type="text"
+                class="form-control form-control-lg"
+                placeholder="Write your article">
+              </textarea>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <input
+        formControlName="tagList"
+        type="text"
+        class="form-control form-control-lg"
+        placeholder="Enter tags"
+      >
+    </fieldset>
+
+    <fieldset>
+      <button type="submit" class="btn btn-lg pull-xs-right btn-primary" [disabled]="form.invalid || isSubmitting">
+        Publish
+      </button>
+    </fieldset>
+
+  </fieldset>
+</form>

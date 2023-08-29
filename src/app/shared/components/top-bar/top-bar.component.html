@@ -1,5 +1,5 @@
 <nav class="navbar navbar-light">
-  <div class="container">
+  <section class="container">
     <a class="navbar-brand" [routerLink]="['/home']">
       medium
     </a>
@@ -14,7 +14,7 @@
       <ng-container *ngIf="isLoggedIn$ | async">
 
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/articles/new']">
+          <a class="nav-link" [routerLink]="['/manage-article/create']">
             <i class="ion-compose"></i>
             &nbsp; New Post
           </a>
@@ -53,5 +53,5 @@
       </ng-container>
 
     </ul>
-  </div>
+  </section>
 </nav>

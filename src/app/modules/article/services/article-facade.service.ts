@@ -22,4 +22,8 @@ export class ArticleFacadeService {
   public getArticle(slug: string): void {
     this.store.dispatch(ArticleActions.GetArticleAction({slug}));
   }
+
+  public deleteArticle(slug: string): void {
+    this.store.dispatch(ArticleActions.DeleteArticleAction({slug}));
+  }
 }

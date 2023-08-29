@@ -1,5 +1,5 @@
-<div class="article-page">
-  <div class="banner">
+<main class="article-page">
+  <section class="banner">
     <div class="container" *ngIf="articleData">
       <h1>{{articleData.title}}</h1>
       <div class="article-meta">
@@ -16,17 +16,21 @@
         </div>
 
         <span *ngIf="isAuthor$ | async">
-          <a [routerLink]="['/articles', articleData.slug, 'edit']" class="btn btn-outline-secondary btn-sm">
+          <a [routerLink]="['/manage-article', 'edit', articleData.slug]" class="btn btn-outline-secondary btn-sm">
             <i class="ion-edit"></i>
             Edit Article
           </a>
 
+          <button class="btn btn-outline-danger btn-sm" (click)="deleteArticle()">
+            Delete Article
+          </button>
+
         </span>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="container page">
+  <section class="container page">
     <span *ngIf="isLoading$ | async">
       Loading...
     </span>
@@ -37,5 +41,5 @@
         <app-tag-list [tagList]="articleData.tagList"></app-tag-list>
       </div>
     </div>
-  </div>
-</div>
+  </section>
+</main>

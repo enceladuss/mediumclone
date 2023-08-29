@@ -35,6 +35,12 @@ export class ArticleComponent implements OnInit, OnDestroy {
     this.initializeListeners();
   }
 
+  public deleteArticle(): void {
+    if (this.slug) {
+      this.articleFacade.deleteArticle(this.slug);
+    }
+  }
+
   private initializeValues(): void {
     this.slug = this.route.snapshot.paramMap.get('slug');
 
