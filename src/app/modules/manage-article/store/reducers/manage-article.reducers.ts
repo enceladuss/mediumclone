@@ -5,7 +5,7 @@ import {ManageArticleStateInterface} from "../../models/manage-article-state.int
 const initialState: ManageArticleStateInterface = {
   isLoading: false,
   error: null,
-  data: null
+  fetchedArticle: null
 }
 
 const manageArticleReducer = createReducer(
@@ -14,7 +14,7 @@ const manageArticleReducer = createReducer(
     {
       ...state,
       isLoading: true,
-      data: null,
+      fetchedArticle: null,
       error: null
     })
   ),
@@ -22,7 +22,7 @@ const manageArticleReducer = createReducer(
     {
       ...state,
       isLoading: false,
-      data: action.article
+      fetchedArticle: action.article
     })
   ),
   on(ManageArticleActions.GetArticleErrorAction, (state, action): ManageArticleStateInterface => (
@@ -35,14 +35,14 @@ const manageArticleReducer = createReducer(
   on(ManageArticleActions.CreateArticleAction, (state): ManageArticleStateInterface => (
     {
       ...state,
-      data: null,
+      fetchedArticle: null,
       error: null
     })
   ),
   on(ManageArticleActions.CreateArticleSuccessAction, (state, action): ManageArticleStateInterface => (
     {
       ...state,
-      data: action.article
+      fetchedArticle: action.article
     })
   ),
   on(ManageArticleActions.CreateArticleErrorAction, (state, action): ManageArticleStateInterface => (
@@ -54,20 +54,26 @@ const manageArticleReducer = createReducer(
   on(ManageArticleActions.EditArticleAction, (state): ManageArticleStateInterface => (
     {
       ...state,
-      data: null,
+      fetchedArticle: null,
       error: null
     })
   ),
   on(ManageArticleActions.EditArticleSuccessAction, (state, action): ManageArticleStateInterface => (
     {
       ...state,
-      data: action.article
+      fetchedArticle: action.article
     })
   ),
   on(ManageArticleActions.EditArticleErrorAction, (state, action): ManageArticleStateInterface => (
     {
       ...state,
       error: action.errors
+    })
+  ),
+  on(ManageArticleActions.ClearArticlesDataAction, (state): ManageArticleStateInterface => (
+    {
+      ...state,
+      fetchedArticle: null,
     })
   ),
 )

@@ -30,7 +30,9 @@ export class ManageArticleEffects {
       ofType(ManageArticleActions.CreateArticleAction),
       switchMap(({article}) => {
           return this.articleService.createArticle(article).pipe(
-            map((article) => {
+            map((data) => {
+              const article = data.article;
+              this.router.navigate(['articles/', article.slug]);
               return ManageArticleActions.CreateArticleSuccessAction({article})
             }),
             catchError((errors: BackendErrorsInterface) => {
@@ -46,7 +48,9 @@ export class ManageArticleEffects {
       ofType(ManageArticleActions.EditArticleAction),
       switchMap(({id, article}) => {
           return this.articleService.editArticle(id, article).pipe(
-            map((article) => {
+            map((data) => {
+              const article = data.article;
+              this.router.navigate(['articles/', article.slug]);
               return ManageArticleActions.EditArticleSuccessAction({article})
             }),
             catchError((errors: BackendErrorsInterface) => {

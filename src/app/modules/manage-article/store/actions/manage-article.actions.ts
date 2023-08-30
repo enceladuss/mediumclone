@@ -47,3 +47,7 @@ export const GetArticleErrorAction = createAction(
   '[Manage Article] Get Article Error',
   props<{ errors: BackendErrorsInterface }>()
 );
+
+export const ClearArticlesDataAction = createAction(
+  '[Manage Article] Clear Articles Data'
+);

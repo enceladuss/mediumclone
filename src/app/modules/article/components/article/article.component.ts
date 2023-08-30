@@ -62,12 +62,13 @@ export class ArticleComponent implements OnInit, OnDestroy {
   private initializeListeners(): void {
 
     combineLatest([this.articleFacade.articleData$, this.articleFacade.error$])
+      .pipe(takeUntil(this.destroy$))
       .subscribe(([articleData, error]) => {
         this.articleData = articleData;
         if (error) {
           this.router.navigate(['/home']);
         }
-      }, takeUntil(this.destroy$));
+      });
 
   }
 

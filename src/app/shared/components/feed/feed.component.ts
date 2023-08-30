@@ -64,10 +64,12 @@ export class FeedComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   private initializeListeners(): void {
-    this.route.queryParams.subscribe((params: Params) => {
+    this.route.queryParams
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((params: Params) => {
       this.currentPage = Number(params['page'] || 1);
       this.fetchData(this.currentPage);
-    }, takeUntil(this.destroy$));
+    });
   }
 
   private getOffsetNumber(page: number): number {

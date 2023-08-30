@@ -6,7 +6,7 @@ export const manageArticleFeatureSelector = (state: AppStateInterface) => state.
 
 export const manageArticleDataSelector = createSelector(
   manageArticleFeatureSelector,
-  (manageArticleState: ManageArticleStateInterface) => manageArticleState.data
+  (manageArticleState: ManageArticleStateInterface) => manageArticleState.fetchedArticle
 )
 
 export const isLoadingSelector = createSelector(

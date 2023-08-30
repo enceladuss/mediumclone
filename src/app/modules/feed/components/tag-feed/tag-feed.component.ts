@@ -20,11 +20,13 @@ export class TagFeedComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
+    this.route.params
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((params: Params) => {
       this.tagName = params['slug'];
       this.apiUrl = `/articles?tag=${this.tagName}`;
       this.pageUrl = `/tags/${this.tagName}`;
-    }, takeUntil(this.destroy$));
+    });
   }
 
   ngOnDestroy(): void {

@@ -21,16 +21,16 @@ export class ArticleService {
     );
   }
 
-  createArticle(article: ManageArticleInterface): Observable<ArticleInterface> {
+  createArticle(article: ManageArticleInterface): Observable<{ article: ArticleInterface }> {
     const fullUrl = `${environment.apiUrl}/articles/`;
 
-    return this.http.post<ArticleInterface>(fullUrl, {article: article});
+    return this.http.post<{ article: ArticleInterface }>(fullUrl, {article: article});
   }
 
-  editArticle(id: string, article: ManageArticleInterface): Observable<ArticleInterface> {
+  editArticle(id: string, article: ManageArticleInterface): Observable<{ article: ArticleInterface }> {
     const fullUrl = `${environment.apiUrl}/articles/${id}`;
 
-    return this.http.put<ArticleInterface>(fullUrl, {article: article});
+    return this.http.put<{ article: ArticleInterface }>(fullUrl, {article: article});
   }
 
   deleteArticle(slug: string): Observable<void> {
